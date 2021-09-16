@@ -1,29 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Chart from 'react-apexcharts'
 
 const Donut = () => {
 
+    const defaultValues = [1, 1, 1, 1]
+
     const [options, setOptions] = useState({})
 
-    const [series, setSeries] = useState([])
+    const [series, setSeries] = useState(defaultValues)
+
+    const [newSeries, setnewSeries] = useState([])
 
     const [labels, setLabels] = useState(['A', 'B', 'C', 'D', 'E'])
 
-    const [input, setInput] = useState('')
+    const [input, setInput] = useState()
 
-    const handleSeries = () => {
-        setSeries([...series, 2])
-        console.log('series', series)
-    }
+    console.log(input)
+
 
     const handleSubmit = (e) => {
-        // setSeries([...series, e.target.value])
-        setSeries([...series, parseInt(input)])
-        console.log('input', input)
-        setInput('')
-        e.preventDefault()
-    }
 
+        if (input == undefined) {
+            alert('Please enter a number')
+            e.preventDefault()
+        } else {
+            setSeries([...series, parseInt(input)])
+            setInput('')
+            e.preventDefault()
+        }
+    }
 
     return (
         <div className="donut">
